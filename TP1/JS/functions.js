@@ -455,6 +455,5 @@ libro29.detalles();
 Lic. Gabriel Chaldu 
 Programación IV 
 Proyecto Final: Manejo de Datos 
-30. Crear un programa que simule una lista de tareas (`to-do list`) utilizando objetos y arrays. 
-Debe permitir agregar tareas, marcar tareas como completadas y listar las tareas pendientes.
+
 */

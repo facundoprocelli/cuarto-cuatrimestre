@@ -17,6 +17,7 @@ function tarea(titulo, descripcion, fecha) {
 }
 
 
+
 function toDoList () {
     this.listaDeTareas = [];
 
@@ -42,6 +43,7 @@ function toDoList () {
 
     this.completarTareaXNombre = function(nombreTarea) {
 
+
         let tarea = this.buscarTareaXNombre(nombreTarea);
         if(tarea != null) {
         tarea.completarTarea();
@@ -49,6 +51,10 @@ function toDoList () {
         }
     }
 
+    //TODO: 
+    //? esto es un comentario pregunta 
+    //! Esto es una adverteincia 
+    
 }
 
 
@@ -63,4 +69,4 @@ lista.mostrarTodasLasTareas();
 lista.completarTareaXNombre("Ordenar Pieza");
 
 
-
+let string = "hola";

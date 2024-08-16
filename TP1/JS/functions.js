@@ -65,6 +65,7 @@ const persona = {
   profesion: "PRogramador",
 };
 
+persona;
 console.log(persona);
 
 //8. Crear un constructor `Producto` que tome parámetros `nombre`, `precio` y `stock`, y cree un objeto con esas propiedades.
@@ -455,5 +456,6 @@ libro29.detalles();
 Lic. Gabriel Chaldu 
 Programación IV 
 Proyecto Final: Manejo de Datos 
-
 */
+
+window.alert("Hola mundo");

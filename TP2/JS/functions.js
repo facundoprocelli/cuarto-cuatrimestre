@@ -144,27 +144,27 @@ console.log(combinarArreglosSinDuplicados(arreglo1, arreglo2));
 
 const listaDeCompras = [
   {
-    produto: "Coca cola",
+    producto: "Coca cola",
     cantidad: 3,
   },
   {
-    produto: "Srpite",
+    producto: "Srpite",
     cantidad: 2,
   },
   {
-    produto: "Fanta",
+    producto: "Fanta",
     cantidad: 5,
   },
   {
-    produto: "Manaos",
+    producto: "Manaos",
     cantidad: 8,
   },
   {
-    produto: "Mirinda",
+    producto: "Mirinda",
     cantidad: 2,
   },
   {
-    produto: "Prity",
+    producto: "Prity",
     cantidad: 1,
   },
 ];
@@ -213,25 +213,139 @@ function buscarPalabra(parrafo, palabra) {
   return veces;
 }
 
-console.log(buscarPalabra("hola este es un hola parrafo hola la verdad hola es qu eno estoy seguro hola", "hola"));
+console.log(
+  buscarPalabra(
+    "hola este es un hola parrafo hola la verdad hola es qu eno estoy seguro hola",
+    "hola"
+  )
+);
 
-//13. Clasificación de Objetos: Ordena un arreglo de objetos por una propiedad específica. 
+//13. Clasificación de Objetos: Ordena un arreglo de objetos por una propiedad específica.
 
 function orednarListaDeCompras(listaDeCompras, propiedad) {
-
-    if(propiedad === "cantidad")
-         return listaDeCompras.sort((a,b) => a[propiedad] - b[propiedad]);
-    else if(propiedad === "producto")
-        return listaDeCompras.sort((a, b) => a[propiedad].localeCompare(b[propiedad]));
+  if (propiedad === "cantidad")
+    return listaDeCompras.sort((a, b) => a[propiedad] - b[propiedad]);
+  else if (propiedad === "producto")
+    return listaDeCompras.sort((a, b) => a[propiedad].localeCompare(b[propiedad]) );
 }
 
 console.log(orednarListaDeCompras(listaDeCompras, "producto"));
 
+//14. Registro de Ventas: Crea un registro de ventas con información sobre productos, cantidades
+//y precios.
+
+function registro() {
+  let ventasTotales = 0;
+  this.registroVentas = [];
+
+  this.vender = function (producto, cantidad, precio) {
+    const venta = {producto, cantidad, precio};
+    this.registroVentas.push(venta);
+    ventasTotales += 1;
+  };
+
+  this.calcularPrecioFinal = function(cantidad, precio) {
+    return cantidad * precio;
+  }
+
+  this.mostrarVenta = function (venta) {
+    console.log(`----- Venta ----\n
+                Producto: ${venta.producto}\n
+                Cantidad: ${venta.cantidad}\n
+                Precio Total: ${venta.cantidad * venta.precio}`);
+  };
+
+
+
+  this.mostrarHistorialVentas = function() {
+    this.registroVentas.forEach(venta => {
+      console.log(this.mostrarVenta(venta));
+    });
+
+  }
+}
+
+const reg = new registro();
+
+reg.vender("Agua", 2,10);
+reg.vender("Coca cola", 1,30);
+reg.vender("Auttito", 4,20);
+
+
+reg.mostrarHistorialVentas();
+
+//15. Carrito de Compras: Simula un carrito de compras que permite agregar, eliminar y calcular 
+//el       hola tod bine co andas  total. 
+
+class producto {
+  constructor(nombre, cantidad, precio, id) {
+    this.nombre = nombre;
+    this.cantidad = cantidad;
+    this.precio = precio;
+    this.id = id;
+  }
+  
+}
+
+class carritoDeCompras {
+  constructor() {
+    this.carro = [];
+  }
+
+  agregarProductoAlCarrito(producto) {
+    this.carro.push(producto);
+  }
+
+  //Esta función no elimina el elemento del arreglo, sino que crea uno nuevo
+  eliminarProductoDelCarrito(idPruducto) {
+    return this.carro.filter(producto => producto.id != idPruducto);
+  }
+
+  eliminarProductoDelCarritoV2(idPruducto) {
+
+    for (let i = 0; i < this.carro.length; i++) {
+      const producto = this.carro[i];
+      if(producto.id == idPruducto){
+        this.carro.splice(i,1);
+      }
+    }
+  }
+
+  eliminarProductoDelCarritoV3(idProducto) {
+    const index = this.carro.findIndex(producto => producto.id === idProducto);
+    if(index !== -1) {
+      this.carro.splice(index,1);
+    }
+  }
+
+
+  calcularPrecioFinal() {
+    let precioFinal = 0;
+    this.carro.forEach(producto => {
+      precioFinal += (producto.precio * producto.cantidad);
+    });
+    return precioFinal;
+  }
+
+
+  mostrarCarrito(){
+    this.carro.forEach(producto => {
+      console.log(producto);
+    });
+  }
+}
+
+
+const carro = new carritoDeCompras();
+
+carro.agregarProductoAlCarrito( new producto("cocaCola", 2, 12,1));
+carro.agregarProductoAlCarrito( new producto("Sprite", 2, 5,2));
+carro.agregarProductoAlCarrito( new producto("Fanta", 2, 15,3));
+
+carro.eliminarProductoDelCarritoV3(2);
+console.log(carro.calcularPrecioFinal());
+carro.mostrarCarrito();
 
 /*
-14. Registro de Ventas: Crea un registro de ventas con información sobre productos, cantidades 
-y precios. 
-15. Carrito de Compras: Simula un carrito de compras que permite agregar, eliminar y calcular 
-el total. 
 16. Gestor de Tareas: Crea un gestor de tareas que permita agregar, completar y listar tareas 
 pendientes.*/

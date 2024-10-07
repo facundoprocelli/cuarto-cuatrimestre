@@ -140,7 +140,6 @@ o Itera sobre el Set creado en el ejercicio 6 e imprime cada número.
 function mostrarSet(set) {
   set.forEach((num) => console.log(num));
 }
-
 mostrarSet(numeros);
 
 console.clear();

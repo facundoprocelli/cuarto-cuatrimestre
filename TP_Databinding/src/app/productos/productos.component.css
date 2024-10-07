@@ -1,0 +1,14 @@
+.descuento {
+  color: green;
+  font-weight: bold;
+}
+
+
+.sinStock{
+  text-decoration: line-through;
+  color: red;
+}
+
+.pocoStock {
+  color: red;
+}

@@ -1,0 +1,101 @@
+<h3>Agregar productos</h3>
+
+<form>
+  <!-- Label con 'for' y input con 'id' -->
+  <label for="nombre"> Nombre: </label>
+  <input
+    type="text"
+    id="nombre"
+    placeholder="Nombre del producto"
+    [(ngModel)]="nuevoProducto.nombre"
+    name="nombre"
+  />
+
+  <label for="precio">Precio: </label>
+  <input
+    type="number"
+    id="precio"
+    placeholder="Precio del producto"
+    [(ngModel)]="nuevoProducto.precio"
+    name="precio"
+  />
+  <button type="button" (click)="agregarProducto()">Agregar Producto</button>
+
+  <br />
+  <br />
+  <br />
+
+  <h2>Eliminar</h2>
+  <label for="id">Id a eliminar</label>
+  <input
+    type="number"
+    id=" id"
+    placeholder="Id a eliminar"
+    [(ngModel)]="IdEliminar"
+    name="id"
+  />
+
+  <!-- Botón para agregar el producto sin enviar el formulario -->
+  <button type="button" (click)="eliminarProducto(IdEliminar)">
+    eliminarProducto
+  </button>
+</form>
+
+<br />
+<br />
+<br />
+<br />
+
+<h2>Modificar</h2>
+
+<form>
+  <label for="idA">Id a actualizar</label>
+  <input type="number" id="idA" [(ngModel)]="idActualizar" name=" idA" />
+
+  <label for="prec">Nuevo Precio</label>
+  <input type="number" id="prec" [(ngModel)]="precioActualizar" name=" precio"/>
+
+  <button type="button" (click)="actualizarPrecio(idActualizar, precioActualizar)">
+    Actualizar Precio
+  </button>
+
+  <br>
+  <label for="idB">Id a actualizar</label>
+  <input type="number" id="idB" [(ngModel)]="idActualizarStock" name=" idA" />
+
+  <label for="stock">Nuevo Stock</label>
+  <input type="number" id="stock" [(ngModel)]="stockActualizar" name=" precio"/>
+
+  <button type="button" (click)="actualizarStock(idActualizarStock, stockActualizar)">
+    Actualizar Stock
+  </button>
+</form>
+
+
+
+
+
+
+
+<h3>Lista de productos</h3>
+
+<ul>
+  <li
+    *ngFor="let producto of productos"
+    [ngClass]="{ descuento: producto.descuento }"
+    [ngClass]="{pocoStock: producto.stock < 5}"
+    [ngClass]="{sinStock: producto.stock === 0}"
+  >
+    <input
+      type="checkbox"
+      [(ngModel)]="producto.descuento"
+      [id]="'checkbox' + producto.id"
+    />
+    <!--El [(ngModel)] se utiliza para decir que producto.descuento va a estar enlazado al estado del checkbox-->
+    <!-- El [id] Se usa para darle un identificador al checkbox y en este caso es cehckbox + el id del producto que representa-->
+
+    <label [for]="'checkbox' + producto.id">
+      {{ producto.id + " " + producto.nombre + "  " + producto.precio + " " + producto.stock }}
+    </label>
+  </li>
+</ul>
